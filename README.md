@@ -1,4 +1,4 @@
-# GratitudeLines 💚
+# Gratitude 💚
 
 **A social tipping dApp on Stellar Testnet where users send XLM tips with public thank-you messages.**
 

@@ -1,29 +1,29 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useWallet } from '@/context/WalletContext';
-import { truncateAddress } from '@/lib/stellar';
 import { isFreighterInstalled } from '@/lib/freighter';
-import { useState, useEffect } from 'react';
+import { truncateAddress } from '@/lib/stellar';
 
 export default function Header() {
-    const { publicKey, isConnected, connect, disconnect, isLoading, error } = useWallet();
-    const [freighterInstalled, setFreighterInstalled] = useState(false);
-    const [showError, setShowError] = useState(false);
+    const { publicKey, isConnected, connect, disconnect } = useWallet();
+    const [hasFreighter, setHasFreighter] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         const checkFreighter = async () => {
             const installed = await isFreighterInstalled();
-            setFreighterInstalled(installed);
+            setHasFreighter(installed);
         };
         checkFreighter();
-    }, []);
 
-    useEffect(() => {
-        if (error) {
-            setShowError(true);
-            setTimeout(() => setShowError(false), 5000);
-        }
-    }, [error]);
+        // Scroll listener for header effect
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 10);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const handleConnect = async () => {
         try {
@@ -34,66 +34,84 @@ export default function Header() {
     };
 
     return (
-        <header className="bg-white border-b border-gray-200 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                <div className="flex items-center justify-between">
-                    {/* Logo and Title */}
-                    <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-gratitude-500 to-gratitude-600 rounded-lg flex items-center justify-center">
-                            <span className="text-white text-xl font-bold">💚</span>
-                        </div>
+        <header
+            className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
+                ? 'glass shadow-lg'
+                : 'bg-white/50 backdrop-blur-sm'
+                }`}
+        >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-16 sm:h-20">
+                    {/* Logo/Brand */}
+                    <div className="flex items-center space-x-3 group">
                         <div>
-                            <h1 className="text-2xl font-bold text-gray-900">GratitudeLines</h1>
-                            <p className="text-sm text-gray-500">Stellar Testnet</p>
+                            <h1 className="text-xl sm:text-2xl font-bold gradient-text">
+                                Gratitude
+                            </h1>
                         </div>
                     </div>
 
                     {/* Wallet Connection */}
-                    <div className="flex items-center space-x-4">
-                        {!freighterInstalled && !isConnected && (
+                    <div className="flex items-center space-x-3">
+                        {!hasFreighter ? (
                             <a
                                 href="https://www.freighter.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-sm text-gratitude-600 hover:text-gratitude-700 underline"
+                                className="btn-secondary text-sm sm:text-base"
                             >
-                                Install Freighter
+                                <span className="hidden sm:inline">Install Freighter</span>
+                                <span className="sm:hidden">Install</span>
                             </a>
-                        )}
-
-                        {isConnected && publicKey ? (
-                            <div className="flex items-center space-x-3">
-                                <div className="flex items-center space-x-2">
-                                    <span className="badge badge-testnet">Testnet</span>
-                                    <span className="text-sm font-mono text-gray-700">
-                                        {truncateAddress(publicKey, 6)}
-                                    </span>
-                                </div>
-                                <button
-                                    onClick={disconnect}
-                                    className="btn-secondary text-sm px-4 py-2"
-                                >
-                                    Disconnect
-                                </button>
-                            </div>
-                        ) : (
+                        ) : !isConnected ? (
                             <button
                                 onClick={handleConnect}
-                                disabled={isLoading || !freighterInstalled}
-                                className="btn-primary"
+                                className="btn-primary text-sm sm:text-base"
                             >
-                                {isLoading ? 'Connecting...' : 'Connect Freighter'}
+                                <span className="hidden sm:inline">Connect Wallet</span>
+                                <span className="sm:hidden">Connect</span>
                             </button>
+                        ) : (
+                            <div className="flex items-center space-x-2 sm:space-x-3">
+                                {/* Connected Badge */}
+                                <div className="hidden sm:flex items-center space-x-2 px-4 py-2 rounded-xl bg-gradient-to-r from-gratitude-50 to-white border border-gratitude-200 shadow-sm">
+                                    <div className="w-2 h-2 bg-gratitude-500 rounded-full animate-pulse"></div>
+                                    <span className="text-sm font-mono font-semibold text-gray-700">
+                                        {truncateAddress(publicKey!)}
+                                    </span>
+                                </div>
+
+                                {/* Mobile: Just address */}
+                                <div className="sm:hidden px-3 py-2 rounded-lg bg-gratitude-50 border border-gratitude-200">
+                                    <span className="text-xs font-mono font-semibold text-gray-700">
+                                        {truncateAddress(publicKey!, 4)}
+                                    </span>
+                                </div>
+
+                                {/* Disconnect Button */}
+                                <button
+                                    onClick={disconnect}
+                                    className="btn-ghost text-sm"
+                                    title="Disconnect"
+                                >
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                    </svg>
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>
+            </div>
 
-                {/* Error Banner */}
-                {showError && error && (
-                    <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg animate-slide-up">
-                        <p className="text-sm text-red-700">{error}</p>
-                    </div>
-                )}
+            {/* Mobile Testnet Badge */}
+            <div className="md:hidden px-4 pb-3">
+                <div className="badge badge-testnet text-xs w-full justify-center">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    <span>Testnet Only - Demo Funds</span>
+                </div>
             </div>
         </header>
     );

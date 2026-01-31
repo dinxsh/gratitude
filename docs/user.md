@@ -1,11 +1,11 @@
-### GratitudeLines – Descriptive User Flow
+### gratitude – Descriptive User Flow
 
 ***
 
 ## 1. Landing and wallet connection
 
 1. **Open the app**  
-   - User visits the GratitudeLines URL in a desktop browser.  
+   - User visits the gratitude URL in a desktop browser.  
    - Hero section explains: “Send tiny XLM tips with public thank‑you notes on Stellar Testnet. Connect your wallet to start.” [risein](https://www.risein.com/bootcamps/stellar-journey-to-mastery-monthly-builder-challenges)
 
 2. **Connect Freighter**  
@@ -24,7 +24,7 @@
 ## 2. Balance fetch and home dashboard
 
 4. **Fetch XLM balance**  
-   - After connection, GratitudeLines calls Horizon Testnet via the Stellar SDK to load the account by the user’s public key using `Networks.TESTNET`. [developers.stellar](https://developers.stellar.org/docs/build/guides/transactions/create-account)
+   - After connection, gratitude calls Horizon Testnet via the Stellar SDK to load the account by the user’s public key using `Networks.TESTNET`. [developers.stellar](https://developers.stellar.org/docs/build/guides/transactions/create-account)
    - While waiting, a wallet card shows a loading indicator and message “Fetching your XLM balance…”.  
 
 5. **Display wallet overview**  
@@ -36,7 +36,7 @@
 6. **Reveal main sections**  
    - Below the wallet card, the app displays two primary areas:
      - **Send GratitudeLine**: a composer form for sending a tip + message.  
-     - **Gratitude Wall**: a scrolling list of recent GratitudeLines.  
+     - **Gratitude Wall**: a scrolling list of recent gratitude.  
 
 ***
 
@@ -64,7 +64,7 @@
    - If anything fails, inline error text appears under the offending field.  
 
 10. **Build and sign the payment**  
-    - After validation, GratitudeLines constructs a Stellar Testnet transaction with a single `payment` operation sending native XLM from the user to the recipient. [developers.stellar](https://developers.stellar.org/docs/build/guides/dapps/frontend-guide)
+    - After validation, gratitude constructs a Stellar Testnet transaction with a single `payment` operation sending native XLM from the user to the recipient. [developers.stellar](https://developers.stellar.org/docs/build/guides/dapps/frontend-guide)
     - Freighter pops up, showing:
       - Source account, destination, amount, and that it’s on **Testnet**.  
     - User reviews and confirms/signs in Freighter. [docs.freighter](https://docs.freighter.app/docs/guide/usingfreighterwebapp/)
@@ -90,7 +90,7 @@
 ## 4. Browsing the Gratitude Wall
 
 14. **View public feed**  
-    - In the “Gratitude Wall” section, the user sees a list of GratitudeLines, each card showing:
+    - In the “Gratitude Wall” section, the user sees a list of gratitude, each card showing:
       - “Alice → Bob · 2 XLM” (using aliases or truncated addresses).  
       - The gratitude message text.  
       - Time sent (“2 min ago”).  
@@ -98,7 +98,7 @@
 
 15. **Filter for personal activity (optional)**  
     - If implemented, filter controls at the top allow the user to switch:
-      - “All GratitudeLines” – full public feed (local/session‑based for v1).  
+      - “All gratitude” – full public feed (local/session‑based for v1).  
       - “Sent by me” – only records where `senderPk` = connected wallet.  
       - “To my address” – records where `recipientPk` = connected wallet.  
 
@@ -128,12 +128,12 @@
 
 19. **Disconnect wallet**  
     - When the user is done, they click “Disconnect” in the header.  
-    - GratitudeLines:
+    - gratitude:
       - Clears the stored public key and balance.  
       - Hides user‑specific filters like “Sent by me / To me”.  
-      - Returns to the initial “Connect Freighter to start sending GratitudeLines” state.  
+      - Returns to the initial “Connect Freighter to start sending gratitude” state.  
 
 20. **Return visit**  
-    - On a future visit, if Freighter is still connected, the app can re‑hydrate the session by checking connection status and refetching the balance and “My GratitudeLines,” allowing users to quickly continue sending or reviewing tips. [developers.stellar](https://developers.stellar.org/docs/build/guides/freighter)
+    - On a future visit, if Freighter is still connected, the app can re‑hydrate the session by checking connection status and refetching the balance and “My gratitude,” allowing users to quickly continue sending or reviewing tips. [developers.stellar](https://developers.stellar.org/docs/build/guides/freighter)
 
 This user flow keeps every critical White Belt requirement front and center—wallet connect/disconnect, balance, XLM testnet payments, and transaction hashes—while presenting them through a distinctive, social “thank‑you” experience.

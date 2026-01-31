@@ -1,10 +1,10 @@
-**Product Requirements Document – GratitudeLines (Stellar White Belt Level 1)**  
+**Product Requirements Document – gratitude (Stellar White Belt Level 1)**  
 
 ***
 
 ## 1. Product overview
 
-GratitudeLines is a social tipping dApp on Stellar Testnet where users send tiny XLM “thank‑you tips” paired with short public thank‑you notes. Each tip becomes a **GratitudeLine**: a visible message of appreciation linked to a real Stellar transaction hash and viewable on a shared “Gratitude Wall.” This wraps the mandatory wallet, balance, and payment flows in an emotional, social product experience instead of a generic payment form. [gitcoin](https://gitcoin.co/blog/introducing-kudos)
+gratitude is a social tipping dApp on Stellar Testnet where users send tiny XLM “thank‑you tips” paired with short public thank‑you notes. Each tip becomes a **GratitudeLine**: a visible message of appreciation linked to a real Stellar transaction hash and viewable on a shared “Gratitude Wall.” This wraps the mandatory wallet, balance, and payment flows in an emotional, social product experience instead of a generic payment form. [gitcoin](https://gitcoin.co/blog/introducing-kudos)
 
 ***
 
@@ -53,7 +53,7 @@ GratitudeLines is a social tipping dApp on Stellar Testnet where users send tiny
    - A recipient opens a unique receipt URL or the wall to show that a specific thank‑you payment exists on Stellar Testnet, with an explorer link for verification.  
 
 3. **Browse recent gratitude in the community**  
-   - Any user opens GratitudeLines, sees a feed of recent tips and messages, and can click through to the underlying transactions on Testnet.  
+   - Any user opens gratitude, sees a feed of recent tips and messages, and can click through to the underlying transactions on Testnet.  
 
 4. **Personal history**  
    - A connected user filters the wall to “Sent by me” or “To my address” to view their own appreciation history.  
@@ -69,7 +69,7 @@ GratitudeLines is a social tipping dApp on Stellar Testnet where users send tiny
 - Use Freighter for wallet management and transaction signing. [docs.trustlesswork](https://docs.trustlesswork.com/trustless-work/stellar-and-soroban-the-backbone-of-trustless-work/stellar-wallets/freighter-wallet)
 - Support **connect** and **disconnect** from the UI:
   - “Connect Freighter” button triggers Freighter’s permission flow for the dApp on Stellar Testnet. [developers.stellar](https://developers.stellar.org/docs/build/guides/freighter/connect-testnet)
-  - “Disconnect” clears local wallet state and hides user‑specific features (balance, “My GratitudeLines”).  
+  - “Disconnect” clears local wallet state and hides user‑specific features (balance, “My gratitude”).  
 
 **Behavior**
 
@@ -121,7 +121,7 @@ GratitudeLines is a social tipping dApp on Stellar Testnet where users send tiny
     - “View on Explorer” link using a known Stellar Testnet explorer.  
   - Create a **GratitudeLine object** in local store keyed by tx hash:
     - `hash`, `senderPk`, `recipientPk`, `senderAlias`, `recipientAlias`, `message`, `amount`, `timestamp`.  
-  - Append it to the Gratitude Wall and to the sender’s “My GratitudeLines” list.  
+  - Append it to the Gratitude Wall and to the sender’s “My gratitude” list.  
 
 - On failure:
   - Show error banner with a friendly message (e.g., “User rejected in Freighter”, “Insufficient funds”, or “Invalid destination address”).  
@@ -130,7 +130,7 @@ GratitudeLines is a social tipping dApp on Stellar Testnet where users send tiny
 
 **Requirements**
 
-- A “Gratitude Wall” section that lists recent GratitudeLines with:
+- A “Gratitude Wall” section that lists recent gratitude with:
   - Sender alias (or truncated address) → recipient alias (or truncated address).  
   - Tip amount in XLM.  
   - Message text.  
@@ -139,13 +139,13 @@ GratitudeLines is a social tipping dApp on Stellar Testnet where users send tiny
 
 **Display rules**
 
-- Newest GratitudeLines appear at the top.  
+- Newest gratitude appear at the top.  
 - If there is no data (fresh deployment), show an empty state explaining how it will look once people start sending tips.  
 
 **Optional enhancements (still client‑side)**
 
 - Local filter controls:
-  - “All GratitudeLines”  
+  - “All gratitude”  
   - “Sent by me” (filter by `senderPk` = connected wallet).  
   - “To my address” (filter by `recipientPk` = connected wallet).  
 
@@ -174,7 +174,7 @@ This acts as a proof‑of‑gratitude link that users can share with others.
 **Layout**
 
 - Single‑page app with:
-  - Header: logo/name “GratitudeLines”, wallet connection status.  
+  - Header: logo/name “gratitude”, wallet connection status.  
   - Left/top: Wallet card (balance + address + network).  
   - Main: two tabs or sections:
     - “Send GratitudeLine” composer.  
@@ -209,8 +209,8 @@ This acts as a proof‑of‑gratitude link that users can share with others.
 
 **Data**
 
-- GratitudeLines can be stored client‑side (e.g., in memory or localStorage) for this level.  
-- No backend is required; the minimal viable product can show only GratitudeLines sent from this browser session plus any dummy seeded examples.  
+- gratitude can be stored client‑side (e.g., in memory or localStorage) for this level.  
+- No backend is required; the minimal viable product can show only gratitude sent from this browser session plus any dummy seeded examples.  
 
 **Security**
 
@@ -224,7 +224,7 @@ This acts as a proof‑of‑gratitude link that users can share with others.
 
 **Repository**
 
-- Public GitHub repository named e.g. `gratitudelines-stellar-whitebelt`.  
+- Public GitHub repository named e.g. `gratitude-stellar-whitebelt`.  
 - At least 5 meaningful commits, e.g.:
   1. Project scaffold + basic UI structure.  
   2. Freighter integration: connect/disconnect + wallet card.  
@@ -235,8 +235,8 @@ This acts as a proof‑of‑gratitude link that users can share with others.
 **README**
 
 - Sections:
-  - Product description: what GratitudeLines is and why it exists.  
-  - Features: wallet connect, balance, send GratitudeLines, wall, tx hashes.  
+  - Product description: what gratitude is and why it exists.  
+  - Features: wallet connect, balance, send gratitude, wall, tx hashes.  
   - Tech stack and Stellar details (Testnet only).  
   - Setup instructions:
     - Clone, install deps, run dev server.  

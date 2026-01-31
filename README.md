@@ -2,7 +2,7 @@
 
 **A social tipping dApp on Stellar Testnet where users send XLM tips with public thank-you messages.**
 
-Built for the Stellar White Belt Level 1 challenge, GratitudeLines transforms simple Stellar payments into visible messages of appreciation. Each tip becomes a "GratitudeLine" - a public thank-you note paired with a real on-chain transaction.
+Built for the Stellar White Belt Level 1 challenge, gratitude transforms simple Stellar payments into visible messages of appreciation. Each tip becomes a "GratitudeLine" - a public thank-you note paired with a real on-chain transaction.
 
 ![Testnet Only](https://img.shields.io/badge/Network-Stellar%20Testnet-orange)
 ![Next.js](https://img.shields.io/badge/Next.js-15-black)
@@ -12,8 +12,8 @@ Built for the Stellar White Belt Level 1 challenge, GratitudeLines transforms si
 
 - **🔐 Freighter Wallet Integration** - Connect/disconnect with Freighter on Stellar Testnet
 - **💰 Balance Display** - Real-time XLM balance fetched from Horizon Testnet
-- **💚 Send GratitudeLines** - Send XLM tips with personalized thank-you messages
-- **📜 Gratitude Wall** - Public feed of all GratitudeLines with filtering options
+- **💚 Send gratitude** - Send XLM tips with personalized thank-you messages
+- **📜 Gratitude Wall** - Public feed of all gratitude with filtering options
 - **🔍 Transaction Verification** - Every GratitudeLine links to its transaction on Stellar Expert
 - **📱 Shareable Receipts** - Unique URLs for each GratitudeLine (`/g/<txHash>`)
 - **✅ On-Chain Confirmation** - Automatic verification of transactions via Horizon API
@@ -40,8 +40,8 @@ Built for the Stellar White Belt Level 1 challenge, GratitudeLines transforms si
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/gratitudelines-stellar-whitebelt.git
-cd gratitudelines-stellar-whitebelt
+git clone https://github.com/yourusername/gratitude-stellar-whitebelt.git
+cd gratitude-stellar-whitebelt
 
 # Install dependencies
 npm install
@@ -85,8 +85,8 @@ Click **"Send GratitudeLine"** and approve the transaction in Freighter.
 
 ### 3. View the Gratitude Wall
 
-Browse all GratitudeLines in the feed. Use filters to see:
-- **All GratitudeLines**: Complete public feed
+Browse all gratitude in the feed. Use filters to see:
+- **All gratitude**: Complete public feed
 - **Sent by me**: Only your sent tips
 - **To my address**: Tips you've received
 
@@ -111,7 +111,7 @@ L1/
 │   ├── Header.tsx             # App header with wallet connection
 │   └── WalletCard.tsx         # Balance display
 ├── context/
-│   ├── GratitudeContext.tsx   # GratitudeLines state management
+│   ├── GratitudeContext.tsx   # gratitude state management
 │   └── WalletContext.tsx      # Wallet state management
 ├── lib/
 │   ├── freighter.ts       # Freighter API integration
@@ -159,17 +159,17 @@ All requirements met:
 
 - **No private keys** are handled by this dApp - all key management via Freighter
 - **Testnet only** - This app is for learning purposes and uses test funds
-- **Client-side storage** - GratitudeLines stored in browser localStorage
+- **Client-side storage** - gratitude stored in browser localStorage
 - **No backend** - All transactions submitted directly to Horizon Testnet
 
 ## 🚧 Future Enhancements (Beyond White Belt)
 
-- Backend API for persistent GratitudeLines storage
+- Backend API for persistent gratitude storage
 - Real-time updates via WebSocket
 - Social features (likes, comments)
 - Mainnet support (with proper warnings)
 - Custom token support
-- NFT receipts for GratitudeLines
+- NFT receipts for gratitude
 
 ## 📝 License
 

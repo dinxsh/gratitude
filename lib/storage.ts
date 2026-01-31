@@ -1,13 +1,13 @@
 import { GratitudeLine, FilterType } from '@/types/gratitude';
 
-const STORAGE_KEY = 'gratitudelines';
+const STORAGE_KEY = 'gratitude';
 
 /**
  * Save a GratitudeLine to localStorage
  */
 export function saveGratitudeLine(line: GratitudeLine): void {
     try {
-        const lines = getAllGratitudeLines();
+        const lines = getAllGratitude();
         lines.unshift(line); // Add to beginning (newest first)
         localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
     } catch (error) {
@@ -16,14 +16,14 @@ export function saveGratitudeLine(line: GratitudeLine): void {
 }
 
 /**
- * Get all GratitudeLines from localStorage
+ * Get all gratitude from localStorage
  */
-export function getAllGratitudeLines(): GratitudeLine[] {
+export function getAllGratitude(): GratitudeLine[] {
     try {
         const stored = localStorage.getItem(STORAGE_KEY);
         return stored ? JSON.parse(stored) : [];
     } catch (error) {
-        console.error('Error loading GratitudeLines:', error);
+        console.error('Error loading gratitude:', error);
         return [];
     }
 }
@@ -32,18 +32,18 @@ export function getAllGratitudeLines(): GratitudeLine[] {
  * Get a specific GratitudeLine by transaction hash
  */
 export function getGratitudeLineByHash(hash: string): GratitudeLine | null {
-    const lines = getAllGratitudeLines();
+    const lines = getAllGratitude();
     return lines.find(line => line.hash === hash) || null;
 }
 
 /**
- * Filter GratitudeLines based on filter type and user's public key
+ * Filter gratitude based on filter type and user's public key
  */
-export function filterGratitudeLines(
+export function filterGratitude(
     filter: FilterType,
     publicKey: string | null
 ): GratitudeLine[] {
-    const allLines = getAllGratitudeLines();
+    const allLines = getAllGratitude();
 
     if (filter === 'all' || !publicKey) {
         return allLines;

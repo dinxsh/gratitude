@@ -8,14 +8,14 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "GratitudeLines - Send XLM Tips with Thank You Messages",
+    title: "gratitude - Send XLM Tips with Thank You Messages",
     description: "A social tipping dApp on Stellar Testnet. Send tiny XLM tips paired with public thank-you notes.",
     keywords: ["Stellar", "XLM", "Testnet", "Gratitude", "Tips", "Blockchain"],
     icons: {
         icon: '/favicon.svg',
     },
     openGraph: {
-        title: "GratitudeLines",
+        title: "gratitude",
         description: "Send tiny XLM tips with public thank-you notes on Stellar Testnet",
         type: "website",
     },

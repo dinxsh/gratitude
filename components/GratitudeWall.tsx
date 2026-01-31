@@ -52,8 +52,8 @@ export default function GratitudeWall() {
                                 key={f.value}
                                 onClick={() => handleFilterChange(f.value)}
                                 className={`flex items-center space-x-1.5 px-3 sm:px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${filter === f.value
-                                        ? 'bg-gradient-to-r from-gratitude-500 to-gratitude-600 text-white shadow-lg shadow-gratitude-500/30'
-                                        : 'text-gray-600 hover:bg-gray-50'
+                                    ? 'bg-gradient-to-r from-gratitude-500 to-gratitude-600 text-white shadow-lg shadow-gratitude-500/30'
+                                    : 'text-gray-600 hover:bg-gray-50'
                                     }`}
                                 disabled={!isConnected && f.value !== 'all'}
                             >
@@ -67,7 +67,7 @@ export default function GratitudeWall() {
                 )}
             </div>
 
-            {/* GratitudeLines List */}
+            {/* gratitude List */}
             {filteredLines.length === 0 ? (
                 <div className="text-center py-16 sm:py-20">
                     <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-gratitude-100 to-gratitude-50 rounded-full mb-6 shadow-lg">
@@ -76,7 +76,7 @@ export default function GratitudeWall() {
                         </svg>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {filter === 'all' ? 'No GratitudeLines Yet' :
+                        {filter === 'all' ? 'No gratitude Yet' :
                             filter === 'sent' ? "You Haven't Sent Any" :
                                 "You Haven't Received Any"}
                     </h3>
@@ -85,14 +85,14 @@ export default function GratitudeWall() {
                             ? 'Be the first to send a GratitudeLine! Connect your wallet and send a thank-you tip to get started.'
                             : filter === 'sent'
                                 ? "Send your first thank-you tip above to spread some gratitude!"
-                                : "Share your address with others to receive GratitudeLines."}
+                                : "Share your address with others to receive gratitude."}
                     </p>
                     {filter !== 'all' && (
                         <button
                             onClick={() => setFilter('all')}
                             className="btn-secondary"
                         >
-                            View All GratitudeLines
+                            View All gratitude
                         </button>
                     )}
                 </div>
@@ -144,8 +144,8 @@ export default function GratitudeWall() {
                                             key={pageNum}
                                             onClick={() => setCurrentPage(pageNum)}
                                             className={`w-10 h-10 rounded-lg font-semibold transition-all ${currentPage === pageNum
-                                                    ? 'bg-gradient-to-r from-gratitude-500 to-gratitude-600 text-white shadow-lg shadow-gratitude-500/30'
-                                                    : 'bg-white hover:bg-gray-50 text-gray-700 border border-gray-200'
+                                                ? 'bg-gradient-to-r from-gratitude-500 to-gratitude-600 text-white shadow-lg shadow-gratitude-500/30'
+                                                : 'bg-white hover:bg-gray-50 text-gray-700 border border-gray-200'
                                                 }`}
                                         >
                                             {pageNum}

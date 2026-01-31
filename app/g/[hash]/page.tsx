@@ -52,7 +52,7 @@ export default function ReceiptPage() {
                     onClick={() => router.push('/')}
                     className="mb-6 text-gratitude-600 hover:text-gratitude-700 font-medium"
                 >
-                    ← Back to GratitudeLines
+                    ← Back to gratitude
                 </button>
 
                 <div className="card p-8">

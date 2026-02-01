@@ -9,8 +9,18 @@ import GratitudeWall from '@/components/GratitudeWall';
 import StatCounter from '@/components/StatCounter';
 
 export default function Home() {
-    const { isConnected } = useWallet();
+    const { isConnected, connect } = useWallet();
     const { gratitude } = useGratitude();
+
+    const handleConnect = async () => {
+        try {
+            await connect();
+        } catch (err: any) {
+            console.error('Connection failed:', err);
+            const errorMsg = err?.message || 'Failed to connect wallet. Please try again.';
+            alert(errorMsg);
+        }
+    };
 
     return (
         <div className="min-h-screen">
@@ -45,7 +55,7 @@ export default function Home() {
 
                                 {/* CTA Row */}
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-10">
-                                    <button className="w-full sm:w-auto px-6 py-2.5 bg-black text-white text-sm font-black rounded-sm hover:bg-gray-800 transition-all shadow-md hover:shadow-xl">
+                                    <button onClick={handleConnect} className="w-full sm:w-auto px-6 py-2.5 bg-black text-white text-sm font-black rounded-sm hover:bg-gray-800 transition-all shadow-md hover:shadow-xl">
                                         CONNECT WALLET
                                     </button>
                                     <a href="#features" className="w-full sm:w-auto px-6 py-2.5 bg-white text-black text-sm font-black rounded-sm border-2 border-black hover:bg-black hover:text-white transition-all">
@@ -269,7 +279,7 @@ export default function Home() {
                                 <p className="text-sm text-gray-600 mb-6 max-w-xl mx-auto">
                                     Join the community making appreciation permanent, transparent, and verifiable on the blockchain
                                 </p>
-                                <button className="px-8 py-3 bg-black text-white text-sm font-black hover:bg-gray-800 transition-all shadow-lg hover:shadow-2xl uppercase tracking-wider">
+                                <button onClick={handleConnect} className="px-8 py-3 bg-black text-white text-sm font-black hover:bg-gray-800 transition-all shadow-lg hover:shadow-2xl uppercase tracking-wider">
                                     Connect Wallet Now
                                 </button>
                             </div>

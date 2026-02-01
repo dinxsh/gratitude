@@ -73,16 +73,25 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         const autoConnect = async () => {
             try {
                 const installed = await isFreighterInstalled();
-                if (installed) {
+                if (!installed) {
+                    setIsInitializing(false);
+                    return;
+                }
+
+                // Check if user has previously allowed access
+                const { isAllowed } = await import('@/lib/freighter');
+                const allowed = await isAllowed();
+
+                if (allowed) {
                     const network = await getFreighterNetwork();
                     if (network === 'TESTNET') {
-                        // Freighter is connected and on testnet, auto-hydrate
+                        // Silently reconnect
                         await connect();
                     }
                 }
             } catch (err) {
-                // Silently fail auto-connect
-                console.log('Auto-connect not available');
+                // Silently fail auto-connect - user will need to manually connect
+                console.log('Auto-connect not available:', err);
             } finally {
                 setIsInitializing(false);
             }

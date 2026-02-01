@@ -28,8 +28,11 @@ export default function Header() {
     const handleConnect = async () => {
         try {
             await connect();
-        } catch (err) {
+        } catch (err: any) {
             console.error('Connection failed:', err);
+            // Show user-friendly error message
+            const errorMsg = err?.message || 'Failed to connect wallet. Please try again.';
+            alert(errorMsg);
         }
     };
 

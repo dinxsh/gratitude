@@ -131,16 +131,16 @@ L1/
 ## 📸 Screenshots
 
 ### Connected Wallet with Balance
-![Wallet Connected](./screenshots/wallet-connected.png)
+<img width="1210" height="393" alt="image" src="https://github.com/user-attachments/assets/4ae76142-daa9-4e55-81a4-b1df1f2ce90e" />
 
 ### GratitudeLine Composer
-![Composer](./screenshots/composer.png)
+<img width="587" height="729" alt="image" src="https://github.com/user-attachments/assets/1a9cae68-212c-4729-a01a-faff34a7f6b9" />
 
 ### Gratitude Wall
-![Wall](./screenshots/gratitude-wall.png)
+<img width="587" height="359" alt="image" src="https://github.com/user-attachments/assets/86891ae4-afc1-4f1b-a649-b2bd26968d3a" />
 
 ### Transaction Hash & Explorer Link
-![Transaction](./screenshots/transaction-success.png)
+<img width="1363" height="591" alt="image" src="https://github.com/user-attachments/assets/27fc3aec-0e3a-4c6b-82be-52f610551236" />
 
 ## ✅ White Belt Level 1 Requirements
 
